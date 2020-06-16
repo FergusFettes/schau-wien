@@ -1,28 +1,20 @@
-import { renderer, cssRenderer, canvas, cameras, mainCamera, cameraPole, scene } from "src/background.js";
+import { renderer, canvas, cameras, mainCamera, cameraPole, scene } from "src/background.js";
 import { imageMap } from "src/material.js";
 import { PickHelper } from "src/classes.js";
 
 export {
   render,
-  renderObjects,
-  resizeRendererToDisplaySize,
-  touchListeners,
-  elementListeners,
 };
-let renderObjects, chosenOrbit, infoElem, infoElemBottom, pickHelper, pickPosition;
 
-renderObjects = [];
-// chosenOrbit = [];
-// let rotationActive = true;
-// let rotationNotice = "members on the go";
+const infoElem = document.querySelector('#info');
+const infoElemBottom = document.querySelector('#info-bottom');
 
-infoElem = document.querySelector('#info');
-infoElemBottom = document.querySelector('#info-bottom');
-
-pickPosition = {x: 0, y: 0};
-pickHelper = new PickHelper();
+let pickPosition = {x: 0, y: 0};
+const pickHelper = new PickHelper();
 clearPickPosition();
-makeCssInvisible();
+touchListeners();
+elementListeners();
+keyListeners();
 
 let currentCube = '';
 let camera = mainCamera
@@ -33,11 +25,9 @@ function render(time) {
 
   conditionalPickerResizer(time, camera);
 
-  // renderObjectSet(renderObjects, time);
   cameraPole.rotation.y = time * .1;
 
   renderer.render(scene, camera);
-  cssRenderer.render(scene, camera);
   requestAnimationFrame(render);
 }
 
@@ -53,40 +43,6 @@ function conditionalPickerResizer(time, camera) {
   }
 }
 
-// function renderObjectSet(objectSet, time) {
-//   if (rotationActive) {
-//     objectSet.forEach((obj, ndx) => {
-//       simpleRotate(obj, ndx, time);
-//     });
-//   } else {
-//     objectSet.forEach((obj, ndx) => {
-//       if (obj[0].type === "Mesh") {
-//         simpleRotate(obj, ndx, time);
-//       } else {
-//         haltingRotate(obj, ndx, time);
-//       }
-//     });
-//   }
-// }
-
-
-function simpleRotate(obj, ndx, time) {
-    const speed = .1 + ndx * .1;
-    const rot = time * obj[1] * speed;
-    obj[0].rotation.x = rot;
-    obj[0].rotation.y = rot;
-}
-
-function haltingRotate(obj, ndx, time) {
-  const absoluteRotation = obj[0].rotation.x % ( Math.PI * 2 )
-  if (absoluteRotation > 0.2) {
-    const speed = .1 + ndx * .1;
-    const rot = time * obj[1] * speed;
-    obj[0].rotation.x = rot;
-    obj[0].rotation.y = rot;
-  }
-}
-
 function resizeRendererToDisplaySize(renderer) {
   const canvas = renderer.domElement;
   const width = canvas.clientWidth;
@@ -94,7 +50,6 @@ function resizeRendererToDisplaySize(renderer) {
   const needResize = canvas.width !== width || canvas.height !== height;
   if (needResize) {
     renderer.setSize(width, height, false);
-    cssRenderer.setSize(width, height, false);
   }
   return needResize;
 }
@@ -123,34 +78,50 @@ function touchListeners() {
 }
 
 function elementListeners() {
+
   const el1 = document.querySelector(".home-icon")
   el1.addEventListener("click", (event) => {
-    camera = mainCamera;
-    infoElemBottom.textContent = cameras.get(mainCamera);
-    makeCssInvisible();
-    pickHelper.index = 0;
-    currentCube.material.opacity = 1;
-    currentCube.material.transparent = false;
-    currentCube = '';
+    resetCamera();
   }, {passive: false});
-  el1.addEventListener('touchmove', () => {infoElem.textContent = ''});
-  // const el2 = document.querySelector(".other-icon")
-  // el2.addEventListener("click", stopWandering)
-  // const el3 = document.querySelector(".third-icon")
-  // el3.addEventListener("click", stopWandering)
+  el1.addEventListener('touchend', (event) => {
+    resetCamera();
+  }, {passive: false});
+
+  const el2 = document.querySelector(".other-icon")
+  el2.addEventListener("click", (event) => {
+    mainCamera.layers.toggle(0);
+  }, {passive: false});
+  el2.addEventListener('touchend', (event) => {
+    mainCamera.layers.toggle(0);
+  }, {passive: false});
+
+  const el3 = document.querySelector(".third-icon")
+  el3.addEventListener("click", (event) => {
+    mainCamera.layers.toggle(1);
+  }, {passive: false});
+  el3.addEventListener('touchend', (event) => {
+    mainCamera.layers.toggle(1);
+  }, {passive: false});
+
 }
 
-// function stopWandering(event) {
-//   console.log(event);
-//   if (infoElemBottom.textContent === rotationNotice) {
-//     infoElemBottom.textContent = "";
-//     rotationActive = false;
+function keyListeners() {
+  document.addEventListener('keyup', (e) => {
+    if (e.code === "Space")    camera.layers.toggle(2)
+    else if (e.key === "e")   camera.layers.toggle(1)
+    else if (e.key === "m")   camera.layers.toggle(0)
+    else if (e.key === "h")   resetCamera();
+  });
+}
 
-  // } else {
-  //   infoElemBottom.textContent = rotationNotice;
-  //   rotationActive = true;
-  // }
-// }
+function resetCamera() {
+  camera = mainCamera;
+  infoElemBottom.textContent = cameras.get(mainCamera);
+  pickHelper.index = 0;
+  currentCube.material.opacity = 1;
+  currentCube.material.transparent = false;
+  currentCube = '';
+}
 
 function clearPickPosition() {
   pickPosition.x = -100000;
@@ -170,16 +141,6 @@ function getCanvasRelativePosition(event) {
     y: (event.clientY - rect.top ) * canvas.height / rect.height,
   };
 }
-
-// function switchGroups(from, to) {
-//   if (pickHelper.pickedObject) {
-//       from = from.filter((x) => {return !(x[0] === pickHelper.pickedObject.parent)})
-//       to.push(pickHelper.pickedObject.parent)
-//       const set = new Set(to)
-//       to = Array.from(set)
-//   }
-//   infoElem.textContent = ''
-// }
 
 function showLink() {
   if (pickHelper.pickedObject) {
@@ -207,20 +168,9 @@ function changeCamera() {
     if (currentCube.children.length > 0) {
       camera = currentCube.children[0]
       infoElemBottom.textContent = cameras.get(camera);
-      makeCssVisible();
       pickHelper.index = 1;
-      currentCube.material.opacity = 0.45;
+      currentCube.material.opacity = 0.65;
       currentCube.material.transparent = true;
     }
   }
-}
-
-function makeCssInvisible() {
-  const element = cssRenderer.domElement;
-  element.children[0].style.display = 'none'
-}
-
-function makeCssVisible() {
-  const element = cssRenderer.domElement;
-  element.children[0].style.display = 'block';
 }

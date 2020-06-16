@@ -10,7 +10,7 @@
   "homepage": "https://github.com/fergusfettes/schau-wien#readme",
   "keywords": [],
   "license": "ISC",
-  "name": "schau-wien.at source",
+  "name": "schau-wien-source",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fergusfettes/schau-wien.git"

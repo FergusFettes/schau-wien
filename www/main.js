@@ -1,9 +1,9 @@
 import * as THREE from "three";
-import { createYouCube } from 'src/youcube.js'
+import { createYouCube } from 'src/youcube.js';
 import { canvas, scene, mainCamera, makeCamera, cameras, controls } from "src/background.js";
-import { materials, loadManager, imageMap } from "src/material.js";
-import { makeLights } from "src/lights.js";
-import { render, touchListeners, elementListeners } from "src/render.js";
+import { materials, loadManager, imageMap, createMaterial } from "src/material.js";
+import "src/lights.js";
+import { render } from "src/render.js";
 
 const loadingElem = document.querySelector('#loading');
 const progressBarElem = loadingElem.querySelector('.progressbar');
@@ -18,18 +18,15 @@ for (let i = 0; i < 3; i ++) {
 }
 
 
-makeLights();
 init();
 requestAnimationFrame(render);
-touchListeners();
-elementListeners();
 function init() {
   loadManager.onLoad = () => {
     loadingElem.style.display = 'none';
     materials.forEach((material, ndx) => {
       const cube = randomCameraCube(material, spread);
-      const youcube = createYouCube(0, 0, 0, 100, 0.8, logos, 'image');
-      cube.add(youcube);
+      // const youcube = createYouCube(0, 0, 0, 100, 0.8, logos, 'image');
+      // cube.add(youcube);
       cube.layers.set(0);
       scene.add(cube);
     });
@@ -41,10 +38,9 @@ function init() {
   };
 
   for (let i = 0; i < 80; ++i) {
-    const material = new THREE.MeshPhongMaterial({
-      color: randomColor(),
-    });
+    const material = createMaterial();
     const cube = randomCubeIn(material, spread)
+    cube.layers.set(2);
     scene.add(cube);
   }
 
@@ -81,31 +77,13 @@ function randomCameraCube(material, spread) {
   const camera = makeCamera(120)
   camera.layers.enable(0);
   camera.layers.enable(1);
+  camera.layers.enable(2);
+  camera.layers.enable(5);
 
   cube.add(camera)
   cameras.set(camera, `welcome to the cube of ${imageMap.get(material)}`)
   return cube
 }
-
-// function randomOrbit(obj, orbit_speed, obj_speed, scale) {
-//   const orbit = new THREE.Object3D();
-//   scene.add(orbit);
-//   renderObjects.push([orbit, orbit_speed]);
-//   const point = getPointOnSphereBehindCamera();
-//   obj.position.x = point['x'] * scale
-//   obj.position.y = point['y'] * scale
-//   obj.position.z = point['z'] * scale
-//   orbit.add(obj);
-//   renderObjects.push([obj, obj_speed]);
-// }
-
-// function addObject(x, y, obj, speed) {
-//   obj.position.x = x * spread;
-//   obj.position.y = y * spread;
-
-  // scene.add(obj);
-  // renderObjects.push([obj, speed]);
-// }
 
 function getPointInSphere(r = 0.8) {
   let d, x, y, z;
@@ -135,8 +113,4 @@ function rand(min, max) {
     min = 0;
   }
   return min + (max - min) * Math.random();
-}
-
-function randomColor() {
-  return `hsl(${rand(360) | 0}, ${rand(50, 100) | 0}%, 50%)`;
 }
