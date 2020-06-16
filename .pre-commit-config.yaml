@@ -1,0 +1,26 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+    -   id: check-yaml
+    -   id: check-added-large-files
+    -   id: check-executables-have-shebangs
+    -   id: check-json
+    -   id: pretty-format-json
+    -   id: check-symlinks
+    -   id: no-commit-to-branch
+    -   args: ['dev']
+
+-   repo: https://github.com/pre-commit/mirrors-csslint
+    rev: ''  # Use the sha / tag you want to point at
+    hooks:
+    -   id: csslint
+
+-   repo: https://github.com/awebdeveloper/pre-commit-prettier
+    rev: ''  # Use the sha or tag you want to point at
+    hooks:
+    -   id: prettier
+        args: [] #list of args like '--single-quote', '--jsx-bracket-same-line', '--print-width 120', '--no-bracket-spacing'
+        additional_dependencies: ['prettier@1.1.0']
