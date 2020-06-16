@@ -49,7 +49,6 @@ function resizeRendererToDisplaySize(renderer) {
   const needResize = canvas.width !== width || canvas.height !== height;
   if (needResize) {
     renderer.setSize(width, height, false);
-    cssRenderer.setSize(width, height, false);
   }
   return needResize;
 }
