@@ -1,0 +1,22 @@
+{
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/fergusfettes/schau-wien/issues"
+  },
+  "dependencies": {
+    "three": "^0.116.0"
+  },
+  "description": "",
+  "homepage": "https://github.com/fergusfettes/schau-wien#readme",
+  "keywords": [],
+  "license": "ISC",
+  "name": "schau-wien.at source",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fergusfettes/schau-wien.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

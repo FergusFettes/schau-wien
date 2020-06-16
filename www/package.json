@@ -1,0 +1,24 @@
+{
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/fergusfettes/schau-wien/issues"
+  },
+  "dependencies": {
+    "src": "file:./src/",
+    "three": "^0.116.0"
+  },
+  "description": "",
+  "homepage": "https://schau-wien.at",
+  "keywords": [],
+  "license": "ISC",
+  "main": "main.js",
+  "name": "Website for the Schau art collective, Viena 2020",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fergusfettes/schau-wien.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}
