@@ -40,7 +40,7 @@ function init() {
   for (let i = 0; i < 80; ++i) {
     const material = createMaterial();
     const cube = randomCubeIn(material, spread)
-    cube.layers.set(1);
+    cube.layers.set(2);
     scene.add(cube);
   }
 

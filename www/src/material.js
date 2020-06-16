@@ -13,7 +13,7 @@ const imageDict = {
   "https://storage.googleapis.com/schau-wien-images/media/fergus.jpeg": "fergus",
   "https://storage.googleapis.com/schau-wien-images/media/reeks2.jpg": "enrique",
   "https://storage.googleapis.com/schau-wien-images/media/alexandru.jpg": "alexandru",
-  "https://storage.googleapis.com/schau-wien-images/media/annar.jpg": "annar",
+  "https://storage.googleapis.com/schau-wien-images/media/annar.jpg": "anna",
   "https://storage.googleapis.com/schau-wien-images/media/luise.jpg": "luise",
   "https://storage.googleapis.com/schau-wien-images/media/paula.jpg": "paula",
 }
@@ -26,7 +26,7 @@ for (const [key, value] of Object.entries(imageDict)) {
     map: loader.load(key),
     side: THREE.DoubleSide,
   });
-  material.flatShading = true;
+  // material.flatShading = true;
   materials.push(material);
   imageMap.set(material, value);
 }
@@ -37,7 +37,7 @@ function createMaterial() {
   const saturation = 1;
   const luminance = .5;
   material.color.setHSL(hue, saturation, luminance);
-  material.flatShading = true;
+  // material.flatShading = true;
   return material;
 }
 

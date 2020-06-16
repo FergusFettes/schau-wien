@@ -14,6 +14,7 @@ const pickHelper = new PickHelper();
 clearPickPosition();
 touchListeners();
 elementListeners();
+keyListeners();
 
 let currentCube = '';
 let camera = mainCamera
@@ -104,6 +105,14 @@ function elementListeners() {
 
 }
 
+function keyListeners() {
+  document.addEventListener('keyup', (e) => {
+    if (e.code === "Space")    mainCamera.layers.toggle(2)
+    else if (e.key === "m")   mainCamera.layers.toggle(1)
+    else if (e.key === "e")   mainCamera.layers.toggle(0)
+  });
+}
+
 function resetCamera() {
   camera = mainCamera;
   infoElemBottom.textContent = cameras.get(mainCamera);
@@ -159,7 +168,7 @@ function changeCamera() {
       camera = currentCube.children[0]
       infoElemBottom.textContent = cameras.get(camera);
       pickHelper.index = 1;
-      currentCube.material.opacity = 0.45;
+      currentCube.material.opacity = 0.65;
       currentCube.material.transparent = true;
     }
   }
