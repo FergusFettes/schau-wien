@@ -2,8 +2,8 @@ import * as THREE from "three";
 import { createYouCube } from 'src/youcube.js'
 import { canvas, scene, mainCamera, makeCamera, cameras, controls } from "src/background.js";
 import { materials, loadManager, imageMap } from "src/material.js";
-import { makeLights } from "src/lights.js";
-import { render, touchListeners, elementListeners } from "src/render.js";
+import * from "src/lights.js";
+import { render } from "src/render.js";
 
 const loadingElem = document.querySelector('#loading');
 const progressBarElem = loadingElem.querySelector('.progressbar');
@@ -18,11 +18,8 @@ for (let i = 0; i < 3; i ++) {
 }
 
 
-makeLights();
 init();
 requestAnimationFrame(render);
-touchListeners();
-elementListeners();
 function init() {
   loadManager.onLoad = () => {
     loadingElem.style.display = 'none';
@@ -41,10 +38,9 @@ function init() {
   };
 
   for (let i = 0; i < 80; ++i) {
-    const material = new THREE.MeshPhongMaterial({
-      color: randomColor(),
-    });
+    const material = createMaterial();
     const cube = randomCubeIn(material, spread)
+    cube.layers.set(1);
     scene.add(cube);
   }
 
@@ -135,8 +131,4 @@ function rand(min, max) {
     min = 0;
   }
   return min + (max - min) * Math.random();
-}
-
-function randomColor() {
-  return `hsl(${rand(360) | 0}, ${rand(50, 100) | 0}%, 50%)`;
 }

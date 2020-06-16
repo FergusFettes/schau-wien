@@ -4,40 +4,42 @@ import { canvas, renderer, camera, scene, gui } from "src/background.js";
 
 export { makeLights };
 
+makeLights();
 function makeLights () {
 
-  {
-    // Ambient
-    const color = 0xFFFFFF;
-    const intensity = 1;
-    const light = new THREE.AmbientLight(color, intensity);
-    light.layers.enable(1);
-    scene.add(light);
+  // {
+  //   // Ambient
+  //   const color = 0xFFFFFF;
+  //   const intensity = 1;
+  //   const light = new THREE.AmbientLight(color, intensity);
+  //   light.layers.enable(1);
+  //   scene.add(light);
 
-    // gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
-    // gui.add(light, 'intensity', 0, 2, 0.01);
+  //   // gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+  //   // gui.add(light, 'intensity', 0, 2, 0.01);
 
-  }
+  // }
 
-   // {
-   //   // Directional
-   //   const color = 0xFFFFFF;
-   //   const intensity = 1;
-   //   const light = new THREE.DirectionalLight(color, intensity);
-   //   light.position.set(10, 10, 0);
-   //   light.target.position.set(-5, 0, 0);
-   //   scene.add(light);
-   //   scene.add(light.target);
+   {
+     // Directional
+     const color = 0xFFFFFF;
+     const intensity = 1;
+     const light = new THREE.DirectionalLight(color, intensity);
+     light.position.set(10, 10, 0);
+     light.target.position.set(-5, 0, 0);
+     scene.add(light);
+     scene.add(light.target);
 
-   //   const helper = new THREE.DirectionalLightHelper(light);
-   //   scene.add(helper);
+     // const helper = new THREE.DirectionalLightHelper(light);
+     // scene.add(helper);
 
-   //   gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('culoure');
-   //   gui.add(light, 'intensity', 0, 2, 0.01);
+     // gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('culoure');
+     // gui.add(light, 'intensity', 0, 2, 0.01);
 
-   //   makeXYZGUI(gui, light.position, 'position', updateLight);
-   //   makeXYZGUI(gui, light.target.position, 'target', updateLight);
-   // }
+     // makeXYZGUI(gui, light.position, 'position', updateLight);
+     // makeXYZGUI(gui, light.target.position, 'target', updateLight);
+
+   }
 
   // {
   //   // Spotlight

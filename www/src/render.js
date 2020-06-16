@@ -4,9 +4,6 @@ import { PickHelper } from "src/classes.js";
 
 export {
   render,
-  resizeRendererToDisplaySize,
-  touchListeners,
-  elementListeners,
 };
 
 const infoElem = document.querySelector('#info');
@@ -15,6 +12,8 @@ const infoElemBottom = document.querySelector('#info-bottom');
 let pickPosition = {x: 0, y: 0};
 const pickHelper = new PickHelper();
 clearPickPosition();
+touchListeners();
+elementListeners();
 
 let currentCube = '';
 let camera = mainCamera
@@ -28,7 +27,6 @@ function render(time) {
   cameraPole.rotation.y = time * .1;
 
   renderer.render(scene, camera);
-  cssRenderer.render(scene, camera);
   requestAnimationFrame(render);
 }
 
@@ -41,40 +39,6 @@ function conditionalPickerResizer(time, camera) {
     const canvas = renderer.domElement;
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
     camera.updateProjectionMatrix();
-  }
-}
-
-// function renderObjectSet(objectSet, time) {
-//   if (rotationActive) {
-//     objectSet.forEach((obj, ndx) => {
-//       simpleRotate(obj, ndx, time);
-//     });
-//   } else {
-//     objectSet.forEach((obj, ndx) => {
-//       if (obj[0].type === "Mesh") {
-//         simpleRotate(obj, ndx, time);
-//       } else {
-//         haltingRotate(obj, ndx, time);
-//       }
-//     });
-//   }
-// }
-
-
-function simpleRotate(obj, ndx, time) {
-    const speed = .1 + ndx * .1;
-    const rot = time * obj[1] * speed;
-    obj[0].rotation.x = rot;
-    obj[0].rotation.y = rot;
-}
-
-function haltingRotate(obj, ndx, time) {
-  const absoluteRotation = obj[0].rotation.x % ( Math.PI * 2 )
-  if (absoluteRotation > 0.2) {
-    const speed = .1 + ndx * .1;
-    const rot = time * obj[1] * speed;
-    obj[0].rotation.x = rot;
-    obj[0].rotation.y = rot;
   }
 }
 
