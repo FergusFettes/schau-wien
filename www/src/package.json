@@ -1,22 +1,22 @@
 {
-  "name": "schau-wien.at source",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fergusfettes/schau-wien.git"
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/fergusfettes/schau-wien/issues"
   },
   "dependencies": {
     "three": "^0.116.0"
   },
+  "description": "",
+  "homepage": "https://github.com/fergusfettes/schau-wien#readme",
   "keywords": [],
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fergusfettes/schau-wien/issues"
+  "name": "schau-wien.at source",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fergusfettes/schau-wien.git"
   },
-  "homepage": "https://github.com/fergusfettes/schau-wien#readme"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
 }
