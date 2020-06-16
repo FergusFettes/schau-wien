@@ -25,8 +25,8 @@ function init() {
     loadingElem.style.display = 'none';
     materials.forEach((material, ndx) => {
       const cube = randomCameraCube(material, spread);
-      const youcube = createYouCube(0, 0, 0, 100, 0.8, logos, 'image');
-      cube.add(youcube);
+      // const youcube = createYouCube(0, 0, 0, 100, 0.8, logos, 'image');
+      // cube.add(youcube);
       cube.layers.set(0);
       scene.add(cube);
     });
@@ -77,31 +77,13 @@ function randomCameraCube(material, spread) {
   const camera = makeCamera(120)
   camera.layers.enable(0);
   camera.layers.enable(1);
+  camera.layers.enable(2);
+  camera.layers.enable(5);
 
   cube.add(camera)
   cameras.set(camera, `welcome to the cube of ${imageMap.get(material)}`)
   return cube
 }
-
-// function randomOrbit(obj, orbit_speed, obj_speed, scale) {
-//   const orbit = new THREE.Object3D();
-//   scene.add(orbit);
-//   renderObjects.push([orbit, orbit_speed]);
-//   const point = getPointOnSphereBehindCamera();
-//   obj.position.x = point['x'] * scale
-//   obj.position.y = point['y'] * scale
-//   obj.position.z = point['z'] * scale
-//   orbit.add(obj);
-//   renderObjects.push([obj, obj_speed]);
-// }
-
-// function addObject(x, y, obj, speed) {
-//   obj.position.x = x * spread;
-//   obj.position.y = y * spread;
-
-  // scene.add(obj);
-  // renderObjects.push([obj, speed]);
-// }
 
 function getPointInSphere(r = 0.8) {
   let d, x, y, z;

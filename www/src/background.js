@@ -15,6 +15,8 @@ function makeBackground() {
   mainCamera.lookAt(0, 0, 0);
   mainCamera.layers.enable(0);
   mainCamera.layers.enable(1);
+  mainCamera.layers.enable(2);
+  mainCamera.layers.enable(5);
   cameras = new WeakMap();
   cameras.set(mainCamera, 'main camera')
 

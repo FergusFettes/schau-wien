@@ -107,9 +107,10 @@ function elementListeners() {
 
 function keyListeners() {
   document.addEventListener('keyup', (e) => {
-    if (e.code === "Space")    mainCamera.layers.toggle(2)
-    else if (e.key === "m")   mainCamera.layers.toggle(1)
-    else if (e.key === "e")   mainCamera.layers.toggle(0)
+    if (e.code === "Space")    camera.layers.toggle(2)
+    else if (e.key === "e")   camera.layers.toggle(1)
+    else if (e.key === "m")   camera.layers.toggle(0)
+    else if (e.key === "h")   resetCamera();
   });
 }
 
