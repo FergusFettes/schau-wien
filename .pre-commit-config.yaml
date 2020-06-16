@@ -11,16 +11,16 @@ repos:
     -   id: pretty-format-json
     -   id: check-symlinks
     -   id: no-commit-to-branch
-    -   args: ['dev']
+        args: [--branch, dev, --branch, master]
 
--   repo: https://github.com/pre-commit/mirrors-csslint
-    rev: ''  # Use the sha / tag you want to point at
-    hooks:
-    -   id: csslint
+# -   repo: https://github.com/pre-commit/mirrors-csslint
+#     rev: ''  # Use the sha / tag you want to point at
+#     hooks:
+#     -   id: csslint
 
--   repo: https://github.com/awebdeveloper/pre-commit-prettier
-    rev: ''  # Use the sha or tag you want to point at
-    hooks:
-    -   id: prettier
-        args: [] #list of args like '--single-quote', '--jsx-bracket-same-line', '--print-width 120', '--no-bracket-spacing'
-        additional_dependencies: ['prettier@1.1.0']
+# -   repo: https://github.com/awebdeveloper/pre-commit-prettier
+#     rev: ''  # Use the sha or tag you want to point at
+#     hooks:
+#     -   id: prettier
+#         args: [] #list of args like '--single-quote', '--jsx-bracket-same-line', '--print-width 120', '--no-bracket-spacing'
+#         additional_dependencies: ['prettier@1.1.0']
