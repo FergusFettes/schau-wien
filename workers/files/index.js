@@ -31,6 +31,7 @@ async function handleRequest(event) {
   }
   if (!response) {
     const response = await fetch(`${url}${style}`, init)
+    event.waitUntil(cache.put(event.request, response.clone()))
   }
   const results = await gatherResponse(response)
   return new Response(results, init)

@@ -9,7 +9,6 @@ async function fetchAsset(event) {
   response = await fetch(`${BUCKET_URL}${url.pathname}`)
   const headers = { 'cache-control': 'public, max-age=14400' }
   response = new Response(response.body, { ...response, headers })
-  event.waitUntil(cache.put(event.request, response.clone()))
   return response
 }
 
@@ -19,7 +18,8 @@ async function handleRequest(event) {
     const cache = caches.default
     let response = await cache.match(event.request)
     if (!response) {
-      let response = await serveAsset(event)
+      let response = await fetchAsset(event)
+      event.waitUntil(cache.put(event.request, response.clone()))
     }
     if (response.status > 399) {
       response = new Response(response.statusText, { status: response.status })
