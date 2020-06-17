@@ -6,7 +6,7 @@ const BUCKET_NAME = 'schau-wien-images/media'
 const BUCKET_URL = `http://storage.googleapis.com/${BUCKET_NAME}`
 
 async function fetchAsset(event) {
-  response = await fetch(`${BUCKET_URL}${url.pathname}`)
+  const response = await fetch(`${BUCKET_URL}${url.pathname}`)
   const headers = { 'cache-control': 'public, max-age=14400' }
   response = new Response(response.body, { ...response, headers })
   return response
@@ -18,7 +18,7 @@ async function handleRequest(event) {
     const cache = caches.default
     let response = await cache.match(event.request)
     if (!response) {
-      let response = await fetchAsset(event)
+      response = await fetchAsset(event)
       event.waitUntil(cache.put(event.request, response.clone()))
     }
     if (response.status > 399) {

@@ -25,12 +25,10 @@ async function handleRequest(event) {
   const cache = caches.default
   let response = await cache.match(event.request)
   const init = {
-    headers: {
-      'content-type': 'text/html;charset=UTF-8',
-    },
+    headers: { 'content-type': 'text/html;charset=UTF-8' },
   }
   if (!response) {
-    const response = await fetch(`${url}${style}`, init)
+    response = await fetch(`${url}${style}`, init)
     event.waitUntil(cache.put(event.request, response.clone()))
   }
   const results = await gatherResponse(response)
