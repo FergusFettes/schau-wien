@@ -2,9 +2,8 @@ addEventListener('fetch', event => {
   return event.respondWith(handleRequest(event))
 })
 
-const main = 'test8/main.js'
-const style = 'main/styles.css'
-const url = 'https://experiments.schau-wien.at/'
+const BUCKET_NAME = 'schau-wien-images/media'
+const BUCKET_URL = `http://storage.googleapis.com/${BUCKET_NAME}`
 
 async function gatherResponse(response) {
   const { headers } = response
@@ -28,7 +27,7 @@ async function handleRequest(event) {
     headers: { 'content-type': 'text/html;charset=UTF-8' },
   }
   if (!response) {
-    response = await fetch(`${url}${style}`, init)
+    response = await fetch(`${BUCKET_URL}${url.pathname}`, init)
     event.waitUntil(cache.put(event.request, response.clone()))
   }
   const results = await gatherResponse(response)
