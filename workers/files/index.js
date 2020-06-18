@@ -2,8 +2,7 @@ addEventListener('fetch', event => {
   return event.respondWith(handleRequest(event))
 })
 
-const BUCKET_NAME = 'schau-wien-images/media'
-const BUCKET_URL = `http://storage.googleapis.com/${BUCKET_NAME}`
+const GIT_REPO = 'https://raw.githubusercontent.com/FergusFettes/schau-wien/master/www/'
 
 async function gatherResponse(response) {
   const { headers } = response
