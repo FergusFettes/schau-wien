@@ -1,43 +1,59 @@
 import * as THREE from "three";
 import { DegRadHelper, ColorGUIHelper } from "src/classes.js";
-import { canvas, renderer, camera, scene, gui } from "src/background.js";
+import { canvas, renderer, mainCamera, scene, gui } from "src/background.js";
 
 export { makeLights };
 
+makeLights();
 function makeLights () {
 
-  {
-    // Ambient
-    const color = 0xFFFFFF;
-    const intensity = 1;
-    const light = new THREE.AmbientLight(color, intensity);
-    light.layers.enable(1);
-    scene.add(light);
+  // {
+  //   // Ambient
+  //   const color = 0xFFFFFF;
+  //   const intensity = 1;
+  //   const light = new THREE.AmbientLight(color, intensity);
+  //   light.layers.enable(1);
+  //   scene.add(light);
 
-    // gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
-    // gui.add(light, 'intensity', 0, 2, 0.01);
+  //   // gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('color');
+  //   // gui.add(light, 'intensity', 0, 2, 0.01);
 
-  }
+  // }
 
-   // {
-   //   // Directional
-   //   const color = 0xFFFFFF;
-   //   const intensity = 1;
-   //   const light = new THREE.DirectionalLight(color, intensity);
-   //   light.position.set(10, 10, 0);
-   //   light.target.position.set(-5, 0, 0);
-   //   scene.add(light);
-   //   scene.add(light.target);
+   {
+     // Directional
+     {
+       const color = 0xFFFFFF;
+       const intensity = 0.5;
+       const light = new THREE.DirectionalLight(color, intensity);
+       light.position.set(10, 10, 30);
+       light.target.position.set(-50, 0, 0);
+       light.layers.set(5)
+       mainCamera.add(light);
+       scene.add(light.target);
+     }
 
-   //   const helper = new THREE.DirectionalLightHelper(light);
-   //   scene.add(helper);
+     {
+       const color = 0xFFFFFF;
+       const intensity = 0.5;
+       const light = new THREE.DirectionalLight(color, intensity);
+       light.position.set(10, 10, 30);
+       light.target.position.set(-5, 0, 0);
+       light.layers.set(5)
+       mainCamera.add(light);
+       scene.add(light.target);
+     }
 
-   //   gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('culoure');
-   //   gui.add(light, 'intensity', 0, 2, 0.01);
+     // const helper = new THREE.DirectionalLightHelper(light);
+     // scene.add(helper);
 
-   //   makeXYZGUI(gui, light.position, 'position', updateLight);
-   //   makeXYZGUI(gui, light.target.position, 'target', updateLight);
-   // }
+     // gui.addColor(new ColorGUIHelper(light, 'color'), 'value').name('culoure');
+     // gui.add(light, 'intensity', 0, 2, 0.01);
+
+     // makeXYZGUI(gui, light.position, 'position', updateLight);
+     // makeXYZGUI(gui, light.target.position, 'target', updateLight);
+
+   }
 
   // {
   //   // Spotlight

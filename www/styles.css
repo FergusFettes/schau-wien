@@ -103,15 +103,47 @@ canvas {
 .other-icon {
   background: url('https://blog.schau-wien.at/wp-content/uploads/2020/04/decasia2.jpg') 0 0 / 100% auto;
   height: 100px;
+  width: 100px;
   top: 1.5rem;
   right: 1.5rem;
+}
+
+.other-icon .tooltiptext {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: yellow;
+  color: blue;
+  text-align: center;
+  padding: 0px 0;
+  border-radius: 0px;
+}
+
+.other-icon:hover .tooltiptext{
+  visibility: visible;
 }
 
 .third-icon {
   background: url('https://blog.schau-wien.at/wp-content/uploads/2020/04/decasia1.jpg') 0 0 / 100% auto;
   height: 100px;
+  width: 100px;
   bottom: 1.5rem;
   right: 1.5rem;
+}
+
+.third-icon .tooltiptext {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: yellow;
+  color: blue;
+  text-align: center;
+  padding: 0px 0;
+  border-radius: 0px;
+}
+
+.third-icon:hover .tooltiptext{
+  visibility: visible;
 }
 
 .hide-text {
