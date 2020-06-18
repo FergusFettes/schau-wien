@@ -92,3 +92,4 @@ lerna-debug.log
 Thumbs.db
 
 *package-lock.json
+www/prod/

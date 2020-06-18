@@ -80,6 +80,15 @@ function randomCameraCube(material, spread) {
   camera.layers.enable(2);
   camera.layers.enable(5);
 
+  const color = 0xFFFFFF;
+  const intensity = 0.1;
+  const light = new THREE.DirectionalLight(color, intensity);
+  light.position.set(10, 10, 30);
+  light.target.position.set(-50, 0, 0);
+  light.layers.set(5)
+  camera.add(light);
+  scene.add(light.target);
+
   cube.add(camera)
   cameras.set(camera, `welcome to the cube of ${imageMap.get(material)}`)
   return cube
