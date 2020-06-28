@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from 'src/js/OrbitControls.js';
 
-export { canvas, renderer, cameras, mainCamera, cameraPole, scene, makeCamera };
-let canvas, renderer, cameras, mainCamera, cameraPole, scene;
+export { canvas, renderer, cameras, mainCamera, mainControl, cameraPole, scene, makeCamera };
+let canvas, renderer, cameras, mainCamera, mainControl, cameraPole, scene;
 
 makeBackground();
 function makeBackground() {
@@ -20,9 +20,9 @@ function makeBackground() {
   cameras = new WeakMap();
   cameras.set(mainCamera, 'main camera')
 
-  // let control = new OrbitControls(mainCamera, renderer.domElement);
-  // control.target.set(0, 0, 0);
-  // control.update();
+  mainControl = new OrbitControls(mainCamera, renderer.domElement);
+  mainControl.target.set(0, 0, 0);
+  mainControl.update();
 
   scene = new THREE.Scene();
 
