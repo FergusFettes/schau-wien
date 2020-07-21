@@ -63,7 +63,16 @@ function main() {
     const objLoader = new OBJLoader2();
     objLoader.load('resources/Schau-Raumplan2.obj', (root) => {
       scene.add(root);
-    });
+
+      const box = new THREE.Box3().setFromObject(root);
+      const boxSize = box.getSize(new THREE.Vector3()).length();
+      const boxCenter = box.getCenter(new THREE.Vector3());
+
+      console.log(boxSize);
+      console.log(boxCenter);
+      console.log(root)
+
+    }, null, (error) => {console.log(error)});
   }
 
   function resizeRendererToDisplaySize(renderer) {
@@ -94,4 +103,3 @@ function main() {
 }
 
 main();
-
