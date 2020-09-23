@@ -23,17 +23,17 @@ function main() {
   {
     const planeSize = 40;
 
-    const loader = new THREE.TextureLoader();
-    const texture = loader.load('https://threejsfundamentals.org/threejs/resources/images/checker.png');
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.magFilter = THREE.NearestFilter;
-    const repeats = planeSize / 2;
-    texture.repeat.set(repeats, repeats);
+    // const loader = new THREE.TextureLoader();
+    // const texture = loader.load('https://threejsfundamentals.org/threejs/resources/images/checker.png');
+    // texture.wrapS = THREE.RepeatWrapping;
+    // texture.wrapT = THREE.RepeatWrapping;
+    // texture.magFilter = THREE.NearestFilter;
+    // const repeats = planeSize / 2;
+    // texture.repeat.set(repeats, repeats);
 
     const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
     const planeMat = new THREE.MeshPhongMaterial({
-      map: texture,
+      // map: texture,
       side: THREE.DoubleSide,
     });
     const mesh = new THREE.Mesh(planeGeo, planeMat);
@@ -61,6 +61,7 @@ function main() {
 
     {
       const gltfLoader = new GLTFLoader();
+      gltfLoader.setCrossOrigin('anonymous');
       const url = 'resources/Schau-Raumplan.gltf';
       gltfLoader.load(url, (gltf) => {
 
@@ -103,6 +104,24 @@ function main() {
   }
 
   requestAnimationFrame(render);
+}
+
+function readTextFile(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                alert(allText);
+            }
+        }
+    }
+    rawFile.send(null);
 }
 
 main();
