@@ -14,7 +14,7 @@ const someHTML =  `<!DOCTYPE html>
 	<head>
 		<meta charset="utf-8">
 		<title>on the global information superhighway</title>
-    <link rel="stylesheet" href="http://files.ffettes.workers.dev/styles.css">
+    <link rel="stylesheet" href="https://styles.ffettes.workers.dev/">
 	</head>
 	<body>
     <header>
@@ -32,7 +32,7 @@ const someHTML =  `<!DOCTYPE html>
     <div id="info"></div>
     <div id="info-bottom"></div>
     <div id="loading"><div class="progress"><div class="progressbar"></div></div></div>
-    <script src="http://files.ffettes.workers.dev/main.js"></script>
+    <script src="https://main.ffettes.workers.dev/"></script>
 	</body>
 </html>
 `
