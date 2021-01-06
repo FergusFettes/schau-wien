@@ -2,7 +2,7 @@ addEventListener('fetch', event => {
   return event.respondWith(handleRequest(event))
 })
 
-const GIT_REPO = 'https://raw.githubusercontent.com/FergusFettes/schau-wien/master/www/'
+const GIT_REPO = 'https://raw.githubusercontent.com/FergusFettes/schau-wien/master/www/prod/main.js'
 
 async function gatherResponse(response) {
   const { headers } = response
@@ -26,7 +26,7 @@ async function handleRequest(event) {
     headers: { 'content-type': 'text/html;charset=UTF-8' },
   }
   if (!response) {
-    response = await fetch(`${BUCKET_URL}${url.pathname}`, init)
+    response = await fetch(`${GIT_REPO}`, init)
     event.waitUntil(cache.put(event.request, response.clone()))
   }
   const results = await gatherResponse(response)

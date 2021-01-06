@@ -23,3 +23,9 @@ To that end, I will set up my gcloud micro instance with some cron jobs to do th
 * update the cloudflare workers
 
 These cronjobs will live in [cronjobs](./cronjobs), check them out.
+
+## Cloudflare workers
+
+Cloudflare workers seem like a pretty cool way to run a basic website. [Check them out.](./workers). Eventually I will figure out how headers work properly and there will be three workers: one for serving text files, one for serving images, and one for serving the `index.html`. If I ever get round to making a mobile optimized version I'll set up another worker to handle that.
+
+I set up all the workers to perform caching, which should make the website pretty heckin responsive afaia. Lets see.

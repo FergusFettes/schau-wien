@@ -3,7 +3,7 @@ addEventListener('fetch', event => {
 })
 
 const BUCKET_NAME = 'schau-wien-images/media'
-const BUCKET_URL = `http://storage.googleapis.com/${BUCKET_NAME}`
+const BUCKET_URL = `https://storage.googleapis.com/${BUCKET_NAME}`
 
 async function serveAsset(event) {
   const url = new URL(event.request.url)
