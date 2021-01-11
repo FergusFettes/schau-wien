@@ -79,29 +79,29 @@ function touchListeners() {
 
 function elementListeners() {
 
-  const el1 = document.querySelector(".home-icon")
-  el1.addEventListener("click", (event) => {
-    resetCamera();
-  }, {passive: false});
-  el1.addEventListener('touchend', (event) => {
-    resetCamera();
-  }, {passive: false});
+  // const el1 = document.querySelector(".home-icon")
+  // el1.addEventListener("click", (event) => {
+  //   resetCamera();
+  // }, {passive: false});
+  // el1.addEventListener('touchend', (event) => {
+  //   resetCamera();
+  // }, {passive: false});
 
-  const el2 = document.querySelector(".other-icon")
-  el2.addEventListener("click", (event) => {
-    mainCamera.layers.toggle(0);
-  }, {passive: false});
-  el2.addEventListener('touchend', (event) => {
-    mainCamera.layers.toggle(0);
-  }, {passive: false});
+  // const el2 = document.querySelector(".other-icon")
+  // el2.addEventListener("click", (event) => {
+  //   mainCamera.layers.toggle(0);
+  // }, {passive: false});
+  // el2.addEventListener('touchend', (event) => {
+  //   mainCamera.layers.toggle(0);
+  // }, {passive: false});
 
-  const el3 = document.querySelector(".third-icon")
-  el3.addEventListener("click", (event) => {
-    mainCamera.layers.toggle(1);
-  }, {passive: false});
-  el3.addEventListener('touchend', (event) => {
-    mainCamera.layers.toggle(1);
-  }, {passive: false});
+  // const el3 = document.querySelector(".third-icon")
+  // el3.addEventListener("click", (event) => {
+  //   mainCamera.layers.toggle(1);
+  // }, {passive: false});
+  // el3.addEventListener('touchend', (event) => {
+  //   mainCamera.layers.toggle(1);
+  // }, {passive: false});
 
 }
 
