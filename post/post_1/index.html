@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <title>
+    __schau - vestibulum vitae dictum aliqua phasellus magnis at 
+  </title>
+  <meta name="theme-color" content="" />
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="description" content="Lets see lets see." />
+  <meta name="author" content="__schau" />
+
+  <meta property="og:url" content="https://schau-wien.fergusfettes.com/post/post_1/" />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:title"
+    content="__schau - vestibulum vitae dictum aliqua phasellus magnis at "
+  />
+  <meta property="og:description" content="Lets see lets see." />
+  <meta property="og:image" content="https://schau-wien.fergusfettes.com/images/profile.jpg" />
+
+  <link rel="stylesheet" href="/css/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Fira+Code&display=swap" rel="stylesheet"> 
+
+  <style>
+    html {
+      font-size: 16px;
+    }
+  </style>
+
+  <script>
+    let initialY;
+    window.onload = function () {
+      initialY = window.scrollY;
+    };
+
+    window.addEventListener("scroll", () => {
+      let currentY = window.scrollY;
+      let header = document.querySelector("header");
+      let toTop = document.querySelector(".to-top-button");
+
+      toTop.style.display = currentY < 500 ? "none" : "inline-flex";
+
+      if (
+        document.body.offsetHeight - (window.innerHeight + window.pageYOffset) < 10
+      ) {
+        initialY = currentY;
+        header.style.top = "0";
+        return;
+      }
+
+      if (currentY - initialY > 60) {
+        initialY = currentY;
+        header.style.top = "-58px";
+      }
+
+      if (currentY - initialY < -5 || currentY < 60) {
+        initialY = currentY;
+        header.style.top = "0";
+      }
+    });
+  </script>
+</head>
+<body style="min-height: 100vh;"><header
+  style="
+  width: 95vw;
+  max-width: 960px;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  transition: all 0.3s;
+  height: 60px;
+  box-shadow:  0px 0px 2px 2px var(--bgBelow) ;
+  background-color:  var(--bgAbove) ;
+  "
+>
+  <div
+  class="hamburger-cross"
+  style="
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 50;
+    width: 50px;
+    height: 50px;
+  "
+  onclick="myFunction()"
+>
+  <i class="hamburger" style="visibility: visible;">
+    <svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fas"
+  data-icon="bars"
+  class="svg-inline--fa fa-bars fa-w-14"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 448 512"
+>
+  <path
+    fill="currentColor"
+    d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+  ></path>
+</svg>
+
+  </i>
+
+  <i class="cross" style="visibility: hidden;">
+    <svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fas"
+  data-icon="times"
+  class="svg-inline--fa fa-times fa-w-11"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 352 512"
+>
+  <path
+    fill="currentColor"
+    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+  ></path>
+</svg>
+
+  </i>
+</div>
+<script>
+  const htmlDoc = document.querySelector("html");
+  const scrollBarWidth = window.innerWidth - htmlDoc.clientWidth;
+
+  const showMenu = (menu, hamBurger, cross) => {
+    htmlDoc.style.overflowY = "hidden";
+    htmlDoc.style.marginRight = scrollBarWidth + "px";
+    hamBurger.style.visibility = "hidden";
+    cross.style.visibility = "visible";
+    menu.classList.remove("collapsed");
+    menu.style.top = "0";
+  };
+
+  const hideMenu = (menu, hamBurger, cross) => {
+    htmlDoc.style.overflowY = "scroll";
+    htmlDoc.style.marginRight = "0";
+    hamBurger.style.visibility = "visible";
+    cross.style.visibility = "hidden";
+    menu.classList.add("collapsed");
+    menu.style.top = "-100vh";
+  };
+
+  const myFunction = () => {
+    const menu = document.querySelector(".slide-menu");
+    const hamBurger = document.querySelector(".hamburger");
+    const cross = document.querySelector(".cross");
+    menu.classList.contains("collapsed")
+      ? showMenu(menu, hamBurger, cross)
+      : hideMenu(menu, hamBurger, cross);
+  };
+</script>
+
+  <div
+    style="
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding: 0 1em 0 2em;
+      height: 100%;
+    "
+  >
+    <div
+  class="breadcrumb"
+  style="padding: 12px 0; line-height: 0.9em; text-align: right;"
+>
+  
+
+
+
+
+
+
+<span style="font-size: 0.9em;"><a
+    href="https://schau-wien.fergusfettes.com/"
+    class="breadcrumb-link "
+    aria-label="Home"
+    style="margin-left: 5px; font-size: 0.9em; color:var(--primary);"
+    ><i><svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fas"
+  data-icon="home"
+  class="svg-inline--fa fa-home fa-w-18"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 576 512"
+>
+  <path
+    fill="currentColor"
+    d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"
+  ></path>
+</svg>
+</i></a
+  >
+</span>
+
+
+
+<span style="font-size: 0.9em;">/<a
+    href="https://schau-wien.fergusfettes.com/post/"
+    class="breadcrumb-link "
+    aria-label="Blog Posts"
+    style="margin-left: 5px; font-size: 0.9em; color:var(--primary);"
+    >Blog Posts</a
+  >
+</span>
+
+
+
+<span style="font-size: 0.9em;">/<a
+    href="#"
+    class="breadcrumb-link active"
+    aria-label="vestibulum vitae dictum aliqua phasellus magnis at"
+    style="margin-left: 5px; font-size: 0.9em; color:var(--primaryHover);"
+    >vestibulum …</a
+  >
+</span>
+
+</div>
+
+
+
+  </div>
+  <div
+  class="slide-menu collapsed"
+  style="
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--bgTransparent);
+    position: fixed;
+    left: 0;
+    top: -100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  "
+>
+  <div
+    class="menu-container"
+    style="
+      background-color: var(--bgAbove);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 6px;
+      border: solid 1px var(--textColor);
+      border-radius: 5px;
+      box-shadow: 3px 3px 5px 2px var(--bgBelow);
+    "
+  >
+    <a class="menu-item" href="/"><i><svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fas"
+  data-icon="home"
+  class="svg-inline--fa fa-home fa-w-18"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 576 512"
+>
+  <path
+    fill="currentColor"
+    d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"
+  ></path>
+</svg>
+</i>Home</a>
+
+    
+    <a class="menu-item" href="https://schau-wien.fergusfettes.com/post/"
+      ><i> <svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fas"
+  data-icon="folder"
+  class="svg-inline--fa fa-folder fa-w-16"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+>
+  <path
+    fill="currentColor"
+    d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"
+  ></path>
+</svg>
+ </i>Blog Posts</a
+    >
+    
+    <a class="menu-item" href="https://schau-wien.fergusfettes.com/poems/"
+      ><i> <svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fas"
+  data-icon="folder"
+  class="svg-inline--fa fa-folder fa-w-16"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+>
+  <path
+    fill="currentColor"
+    d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"
+  ></path>
+</svg>
+ </i>Poems</a
+    >
+    
+    <a class="menu-item" href="https://schau-wien.fergusfettes.com/archive/"
+      ><i> <svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fas"
+  data-icon="archive"
+  class="svg-inline--fa fa-archive fa-w-16"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+>
+  <path
+    fill="currentColor"
+    d="M32 448c0 17.7 14.3 32 32 32h384c17.7 0 32-14.3 32-32V160H32v288zm160-212c0-6.6 5.4-12 12-12h104c6.6 0 12 5.4 12 12v8c0 6.6-5.4 12-12 12H204c-6.6 0-12-5.4-12-12v-8zM480 32H32C14.3 32 0 46.3 0 64v48c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16V64c0-17.7-14.3-32-32-32z"
+  ></path>
+</svg>
+
+      </i>Archive</a
+    >
+    
+    <a class="menu-item" href="https://schau-wien.fergusfettes.com/about/"
+      ><i> <svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fas"
+  data-icon="folder"
+  class="svg-inline--fa fa-folder fa-w-16"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+>
+  <path
+    fill="currentColor"
+    d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"
+  ></path>
+</svg>
+ </i>__schau</a
+    >
+    
+  </div>
+</div>
+<script>
+  const slideMenu = document.querySelector(".slide-menu");
+  const menuContainer = document.querySelector(".menu-container");
+  slideMenu.addEventListener("click", (event) => {
+    if (event.target !== menuContainer){
+      const hamBurger = document.querySelector(".hamburger");
+      const cross = document.querySelector(".cross");
+      htmlDoc.style.overflowY = "scroll";
+      htmlDoc.style.marginRight = "0";
+      hamBurger.style.visibility = "visible";
+      cross.style.visibility = "hidden";
+      slideMenu.classList.add("collapsed");
+      slideMenu.style.top = "-100vh";
+    }
+  });
+</script>
+</header>
+<main id="content"  style="margin-top: 80px;" >
+<div
+  style="display: flex; flex-direction: column;"
+>
+  <h1 style="margin: 0 0 0.25em 0; font-size: 2.5em;">vestibulum vitae dictum aliqua phasellus magnis at</h1>
+  <div class="sharing-icons">
+    
+
+<div style="display: flex; flex-direction: row;">
+  
+  <a
+    class="sharing-icon"
+    href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fschau-wien.fergusfettes.com%2fpost%2fpost_1%2f"
+    target="_blank"
+    rel="noopener"
+    aria-label="share on facebook"
+  >
+    <i>
+      <svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fab"
+  data-icon="facebook"
+  class="svg-inline--fa fa-facebook fa-w-16"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+>
+  <path
+    fill="currentColor"
+    d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"
+  ></path>
+</svg>
+
+    </i>
+  </a>
+
+  
+  <a
+    class="sharing-icon"
+    href="https://twitter.com/intent/tweet/?text=vestibulum%20vitae%20dictum%20aliqua%20phasellus%20magnis%20at%20by%20__schau&amp;url=https%3a%2f%2fschau-wien.fergusfettes.com%2fpost%2fpost_1%2f"
+    target="_blank"
+    rel="noopener"
+    aria-label="share on twitter"
+  >
+    <i>
+      <svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fab"
+  data-icon="twitter"
+  class="svg-inline--fa fa-twitter fa-w-16"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+>
+  <path
+    fill="currentColor"
+    d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+  ></path>
+</svg>
+
+    </i>
+  </a>
+
+  
+  <a
+    class="sharing-icon"
+    href="mailto:?subject=vestibulum%20vitae%20dictum%20aliqua%20phasellus%20magnis%20at%20by%20__schau&amp;body=https%3a%2f%2fschau-wien.fergusfettes.com%2fpost%2fpost_1%2f"
+    target="_self"
+    rel="noopener"
+    aria-label="share by email"
+  >
+    <i>
+      <svg
+  aria-hidden="true"
+  focusable="false"
+  data-prefix="fas"
+  data-icon="envelope"
+  class="svg-inline--fa fa-envelope fa-w-16"
+  role="img"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+>
+  <path
+    fill="currentColor"
+    d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
+  ></path>
+</svg>
+
+    </i>
+  </a>
+</div>
+
+  </div>
+  <div class="metadata">
+    <div style="display: flex; flex-direction: column;">
+
+    
+    
+    
+    <p style="margin: 2px 0;">
+      
+      <a
+        class="metadata-items"
+        href="/categories/aliquam-auctor"
+        title="categories"
+        style="margin-right: 0.5em; text-decoration: underline; font-size: 0.9em;"
+      >aliquam auctor</a>
+      
+      <a
+        class="metadata-items"
+        href="/categories/do"
+        title="categories"
+        style="margin-right: 0.5em; text-decoration: underline; font-size: 0.9em;"
+      >do</a>
+      
+    </p>
+     
+    
+    <p style="margin: 2px 0;">
+      
+      <a
+        class="metadata-items"
+        href="/tags/aliquam-incididunt"
+        title="tags"
+        style="margin-right: 0.5em; text-decoration: underline; font-size: 0.9em;"
+      >aliquam incididunt</a>
+      
+      <a
+        class="metadata-items"
+        href="/tags/notes"
+        title="tags"
+        style="margin-right: 0.5em; text-decoration: underline; font-size: 0.9em;"
+      >notes</a>
+      
+      <a
+        class="metadata-items"
+        href="/tags/velit"
+        title="tags"
+        style="margin-right: 0.5em; text-decoration: underline; font-size: 0.9em;"
+      >velit</a>
+      
+    </p>
+     
+  </div>
+  </div>
+</div>
+<div style="margin-bottom: 1.5em; font-style: italic; font-size: 0.9em;">by __schau &middot;
+  <time>2018/05/23</time>
+</div>
+<div class="content">
+  <h1 id="eu-velit-magna-aliqua-hendrerit">eu velit magna aliqua hendrerit</h1>
+<p>Cursus non odio nam suspendisse mollis tempus tincidunt, cursus praesent facilisi elementum etiam rhoncus tempor. At penatibus ultrices nulla phasellus mi quis luctus felis ultricies. Urna tempus ac consequat sem sed curabitur justo, quam suspendisse cursus aenean integer tellus consectetur. Sed bibendum hendrerit volutpat fames libero nisl dui, nunc vivamus augue posuere luctus scelerisque ultrices. Do pretium consectetur vestibulum lacinia eget do semper, varius viverra scelerisque madssa semper venenatis cras. Ac pharetra interdum rhoncus eleifend libero bolestie ligula justo.</p>
+<p>Malesuada vel arcu odio scelerisque tellus adipiscing congue vitae erat leo commodo. Rhoncus amet cras curabitur non augue aenean eu nibh nisl orci lorem. Augue rhoncus euismod leo nam netus viverra interdum lectus do quam. Consequat dolor metus urna ultricies mi aliquet dolore dictum. Facilisi facilisis et eiusmod mus orci consectetur dolore ultricies placerat porttitor sed. Est labore hendrerit id malesuada interdum quisque mollis mattis ut.</p>
+<p>Aliqua congue egestas bibendum pretium semper id vulputate eleifend lorem vestibulum auctor. Euismod eleifend eiusmod at vel suspendisse donec commodo sit volutpat do. Iaculis accimsan ipsum suscipit labore mattis sollicitudin sit eiusmod turpis. Nisi pulvinar vulputate scelerisque feugiat posuere a dui faucibus. Nam ultrices magnis netus sed faucibus aliqua interdum laoreet consectetur eleifend. Malesuada elit enim ullamcorper commodo eget pretium penatibus vitae vestibulum iaculis.</p>
+
+</div>
+<script>
+  document.onkeydown = function(e) {
+    switch (e.keyCode) {
+      case 37:
+        
+        document.querySelector(".previous-link").click();
+        break;
+      case 39:
+        
+        document.querySelector(".next-link").click();
+        break;
+    }
+  };
+</script>
+
+    </main>
+  </body>
+</html>
