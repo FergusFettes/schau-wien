@@ -18,7 +18,9 @@ keyListeners();
 
 let currentCube = '';
 let camera = mainCamera
-infoElemBottom.textContent = cameras.get(mainCamera);
+if (infoElemBottom) {
+  infoElemBottom.textContent = cameras.get(mainCamera);
+}
 
 function render(time) {
   time *= 0.001;
@@ -79,29 +81,35 @@ function touchListeners() {
 
 function elementListeners() {
 
-  // const el1 = document.querySelector(".home-icon")
-  // el1.addEventListener("click", (event) => {
-  //   resetCamera();
-  // }, {passive: false});
-  // el1.addEventListener('touchend', (event) => {
-  //   resetCamera();
-  // }, {passive: false});
+  if (document.querySelector('.home-icon') !== null) {
+    const el1 = document.querySelector(".home-icon")
+    el1.addEventListener("click", (event) => {
+      resetCamera();
+    }, {passive: false});
+    el1.addEventListener('touchend', (event) => {
+      resetCamera();
+    }, {passive: false});
+  }
 
-  // const el2 = document.querySelector(".other-icon")
-  // el2.addEventListener("click", (event) => {
-  //   mainCamera.layers.toggle(0);
-  // }, {passive: false});
-  // el2.addEventListener('touchend', (event) => {
-  //   mainCamera.layers.toggle(0);
-  // }, {passive: false});
+  if (document.querySelector(".other-icon") !== null) {
+    const el2 = document.querySelector(".other-icon")
+    el2.addEventListener("click", (event) => {
+      mainCamera.layers.toggle(0);
+    }, {passive: false});
+    el2.addEventListener('touchend', (event) => {
+      mainCamera.layers.toggle(0);
+    }, {passive: false});
+  }
 
-  // const el3 = document.querySelector(".third-icon")
-  // el3.addEventListener("click", (event) => {
-  //   mainCamera.layers.toggle(1);
-  // }, {passive: false});
-  // el3.addEventListener('touchend', (event) => {
-  //   mainCamera.layers.toggle(1);
-  // }, {passive: false});
+  if (document.querySelector(".third-icon") !== null) {
+    const el3 = document.querySelector(".third-icon")
+    el3.addEventListener("click", (event) => {
+      mainCamera.layers.toggle(1);
+    }, {passive: false});
+    el3.addEventListener('touchend', (event) => {
+      mainCamera.layers.toggle(1);
+    }, {passive: false});
+  }
 
 }
 
@@ -116,7 +124,9 @@ function keyListeners() {
 
 function resetCamera() {
   camera = mainCamera;
-  infoElemBottom.textContent = cameras.get(mainCamera);
+  if (infoElemBottom) {
+    infoElemBottom.textContent = cameras.get(mainCamera);
+  }
   pickHelper.index = 0;
   currentCube.material.opacity = 1;
   currentCube.material.transparent = false;
@@ -144,9 +154,13 @@ function getCanvasRelativePosition(event) {
 
 function showLink() {
   if (pickHelper.pickedObject) {
+    if (infoElem) {
       infoElem.textContent = imageMap.get(pickHelper.pickedObject.material);
+    }
   } else {
+    if (infoElem) {
       infoElem.textContent = ''
+    }
   }
 }
 
@@ -155,7 +169,9 @@ function goToLink() {
       const link = imageMap.get(pickHelper.pickedObject.material);
       window.open(link);
   }
-  infoElem.textContent = ''
+  if (infoElem) {
+    infoElem.textContent = ''
+  }
 }
 
 function changeCamera() {
@@ -167,7 +183,9 @@ function changeCamera() {
     currentCube = pickHelper.pickedObject;
     if (currentCube.children.length > 0) {
       camera = currentCube.children[0]
-      infoElemBottom.textContent = cameras.get(camera);
+      if (infoElemBottom) {
+        infoElemBottom.textContent = cameras.get(camera);
+      }
       pickHelper.index = 1;
       currentCube.material.opacity = 0.65;
       currentCube.material.transparent = true;

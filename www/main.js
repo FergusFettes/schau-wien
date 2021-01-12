@@ -6,7 +6,10 @@ import "src/lights.js";
 import { render } from "src/render.js";
 
 const loadingElem = document.querySelector('#loading');
-const progressBarElem = loadingElem.querySelector('.progressbar');
+var progressBarElem = null;
+if (loadingElem !== null) {
+  const progressBarElem = loadingElem.querySelector('.progressbar');
+}
 
 const multiply = 7;
 const spread = 80 * multiply;
@@ -22,7 +25,9 @@ init();
 requestAnimationFrame(render);
 function init() {
   loadManager.onLoad = () => {
-    loadingElem.style.display = 'none';
+    if (loadingElem !== null) {
+      loadingElem.style.display = 'none';
+    }
     materials.forEach((material, ndx) => {
       const cube = randomCameraCube(material, spread);
       // const youcube = createYouCube(0, 0, 0, 100, 0.8, logos, 'image');
@@ -32,9 +37,11 @@ function init() {
     });
   };
 
-  loadManager.onProgress = (urlOfLastItemLoaded, itemsLoaded, itemsTotal) => {
-  const progress = itemsLoaded / itemsTotal;
-  progressBarElem.style.transform = `scaleX(${progress})`;
+  if (progressBarElem !== null) {
+    loadManager.onProgress = (urlOfLastItemLoaded, itemsLoaded, itemsTotal) => {
+    const progress = itemsLoaded / itemsTotal;
+    progressBarElem.style.transform = `scaleX(${progress})`;
+    }
   };
 
   for (let i = 0; i < 80; ++i) {
